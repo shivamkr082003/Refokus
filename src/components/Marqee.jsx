@@ -1,25 +1,17 @@
 import React from 'react';
+import {motion} from 'framer-motion'
 
-function Marqee({ imageurls = [] }) {   // default empty array diya
+function Marqee({ imagesurls ,direction}) {   // default empty array diya
   return (
-    <div className="flex w-full py-8 gap-20 whitespace-nowrap overflow-hidden">
-      {imageurls.map((url, index) => (
-        <img
-          key={`img1-${index}`}   // unique key
-          src={url}
-          alt=""
-          className="w-6vw flex-shrink-0"
-        />
-      ))}
-
-      {imageurls.map((url, index) => (
-        <img
-          key={`img2-${index}`}   // dusri list ke liye bhi unique key
-          src={url}
-          alt=""
-          className="flex-shrink-0"
-        />
-      ))}
+    <div className='flex  w-full py-8 gap-20 whitespace-nowrap overflow-hidden'>
+        <motion.div initial={{x:direction==='left' ? '0' : '-100%'}} animate={{x:direction==='left' ? '-100%' : '0'}} transition={{ease:"linear" , duration: 10 , repeat: Infinity} }
+      className='flex flex-shrink-0 gap-10 py-7 pl-10 '> 
+        {imagesurls.map((item, index) => <img key={index} src={item} alt='marqee' className='' />)}
+      </motion.div>
+      <motion.div initial={{x:direction==='left' ? '0' : '-100%'}} animate={{x:direction==='left' ? '-100%' : '0'}} transition={{ease:"linear" , duration: 10 , repeat: Infinity} }
+      className='flex flex-shrink-0 gap-10 py-7 pl-10'> 
+        {imagesurls.map((item, index) => <img key={index} src={item} alt='marqee' className='' />)}
+      </motion.div>
     </div>
   );
 }
